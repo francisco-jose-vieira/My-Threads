@@ -12,6 +12,7 @@ export function App() {
         <Sidebar />
         <main></main>
       </div>
+      
     </>
   );
 }
