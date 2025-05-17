@@ -51,6 +51,13 @@ export function Post({ author, publishedAt, content }: PostProps) {
     }
   }
 
+  function deleteComment(commentToDelete: any) {
+    const commentsWithoutDeleteOne = comments.filter(comment => {
+      return comment != commentToDelete
+    })
+    setComments(commentsWithoutDeleteOne)
+  }
+
   return (
     <article className={styles.post}>
       <header>
@@ -62,7 +69,7 @@ export function Post({ author, publishedAt, content }: PostProps) {
           </div>
         </div>
 
-        <time dateTime={publishedAt.toISOString()}>
+        <time title={publishedAtDateFormate} dateTime={publishedAt.toISOString()}>
           {publishedDateRelativeToNow}
         </time>
       </header>
@@ -92,7 +99,7 @@ export function Post({ author, publishedAt, content }: PostProps) {
 
       <div className={styles.commentList}>
         {comments.map((comment) => {
-          return <Comment content={comment} />;
+          return <Comment key={comment} content={comment} onDeleteComment={deleteComment} />;
         })}
       </div>
     </article>
