@@ -51,11 +51,16 @@ export function Post({ author, publishedAt, content }: PostProps) {
     }
   }
 
+  function handleNewCommentInvalid(event: React.InvalidEvent<HTMLTextAreaElement>) {
+    event?.target.setCustomValidity('Esse campo é obrigatório');
+    event?.target.setCustomValidity('');
+  }
+
   function deleteComment(commentToDelete: any) {
-    const commentsWithoutDeleteOne = comments.filter(comment => {
-      return comment != commentToDelete
-    })
-    setComments(commentsWithoutDeleteOne)
+    const commentsWithoutDeleteOne = comments.filter((comment) => {
+      return comment != commentToDelete;
+    });
+    setComments(commentsWithoutDeleteOne);
   }
 
   return (
@@ -69,7 +74,10 @@ export function Post({ author, publishedAt, content }: PostProps) {
           </div>
         </div>
 
-        <time title={publishedAtDateFormate} dateTime={publishedAt.toISOString()}>
+        <time
+          title={publishedAtDateFormate}
+          dateTime={publishedAt.toISOString()}
+        >
           {publishedDateRelativeToNow}
         </time>
       </header>
@@ -91,7 +99,12 @@ export function Post({ author, publishedAt, content }: PostProps) {
 
       <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
-        <textarea ref={textareaRef} placeholder="Deixe um comentário" />
+        <textarea 
+          ref={textareaRef} 
+          placeholder="Deixe um comentário"
+          onInvalid={handleNewCommentInvalid}
+          required 
+        />
         <footer>
           <button type="submit">Publicar</button>
         </footer>
@@ -99,7 +112,13 @@ export function Post({ author, publishedAt, content }: PostProps) {
 
       <div className={styles.commentList}>
         {comments.map((comment) => {
-          return <Comment key={comment} content={comment} onDeleteComment={deleteComment} />;
+          return (
+            <Comment
+              key={comment}
+              content={comment}
+              onDeleteComment={deleteComment}
+            />
+          );
         })}
       </div>
     </article>
