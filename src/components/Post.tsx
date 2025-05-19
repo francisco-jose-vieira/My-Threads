@@ -5,7 +5,7 @@ import styles from "./Post.module.css";
 import { format, formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale/pt-BR";
 
-import { useState, useRef } from "react";
+import { useState, useRef, FormEvent } from "react";
 
 interface Author {
   name: string;
@@ -41,7 +41,7 @@ export function Post({ author, publishedAt, content }: PostProps) {
     addSuffix: true,
   });
 
-  function handleCreateNewComment(event: React.FormEvent) {
+  function handleCreateNewComment(event: FormEvent) {
     event?.preventDefault();
     const textContent = textareaRef.current?.value;
     if (!textContent?.trim()) return;
@@ -56,7 +56,7 @@ export function Post({ author, publishedAt, content }: PostProps) {
     event?.target.setCustomValidity('');
   }
 
-  function deleteComment(commentToDelete: any) {
+  function deleteComment(commentToDelete: string) {
     const commentsWithoutDeleteOne = comments.filter((comment) => {
       return comment != commentToDelete;
     });
