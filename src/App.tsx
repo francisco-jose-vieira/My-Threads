@@ -48,13 +48,12 @@ const posts: Post[] = [
       role: "Web Developer",
     },
     content: [
-      { type: "paragraph", content: "Fala galeraa 👋" },
+      { type: "paragraph", content: "Eae Pessoal tudo bem 😊" },
       {
         type: "paragraph",
         content:
-          "Acabei de subir mais um projeto no meu portfólio. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀",
+          "Quais tecnologias vocês estão mais usando no momento?",
       },
-      { type: "link", content: "👉 design/doctorcare" },
     ],
     publishedAt: new Date("2025-05-03 20:37:00"),
   }
